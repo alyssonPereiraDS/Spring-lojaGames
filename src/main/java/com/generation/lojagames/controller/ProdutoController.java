@@ -1,6 +1,7 @@
 package com.generation.lojagames.controller;
 
 import com.generation.lojagames.model.Produto;
+import com.generation.lojagames.repository.CategoriaRepository;
 import com.generation.lojagames.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,9 @@ import java.util.Optional;
 public class ProdutoController {
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    @Autowired
+    CategoriaRepository categoriaRepository;
 
 
     @GetMapping
