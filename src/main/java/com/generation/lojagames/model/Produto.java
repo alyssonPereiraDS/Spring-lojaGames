@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "tb_produtos")
@@ -24,7 +25,7 @@ public class Produto {
 
     @NotNull(message = "o atributo preço não pode ser nulo")
     @PositiveOrZero(message = "o atributo preço deve ser positivo")
-    private Double preco;
+    private BigDecimal preco;
 
     @NotBlank(message = "o atributo desenvolvedora deve ser preenchido")
     @Size(min = 2, max = 20, message = "o atributo desenvolvedora deve ter no minimo 2 caracteres e no máximo 20")
