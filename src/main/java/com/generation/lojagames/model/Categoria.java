@@ -16,7 +16,7 @@ public class Categoria {
     private Long id;
 
     @NotBlank(message = "o atributo nome deve ser preenchido")
-    @Size(min = 5, max = 20, message = "o atributo nome deve ter no minimo 5 caracteres e no máximo 20 caracteres")
+    @Size(min = 2, max = 20, message = "o atributo nome deve ter no minimo 2 caracteres e no máximo 20 caracteres")
     private String nome;
 
     @NotBlank(message = "o atributo descrição deve ser preenchido")
