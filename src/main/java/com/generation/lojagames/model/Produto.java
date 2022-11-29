@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     @NotBlank(message = "o atributo nome deve ser preenchido")
     @Size(min = 5, max = 20, message = "o atributo nome deve ter no minimo 5 caracteres e no máximo 20 caracteres")
@@ -31,11 +31,11 @@ public class Produto {
     @Size(min = 2, max = 20, message = "o atributo desenvolvedora deve ter no minimo 2 caracteres e no máximo 20")
     private String desenvolvedora;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
