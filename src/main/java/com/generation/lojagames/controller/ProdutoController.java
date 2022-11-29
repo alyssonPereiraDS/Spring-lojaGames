@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/produtos")
@@ -16,6 +18,7 @@ import java.util.List;
 public class ProdutoController {
     @Autowired
     private ProdutoRepository produtoRepository;
+
 
     @GetMapping
     public ResponseEntity<List<Produto>> getAll(){
@@ -44,5 +47,13 @@ public class ProdutoController {
             return ResponseEntity.status(HttpStatus.OK).body(produtoRepository.save(produto));
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        Optional<Produto> produto=produtoRepository.findById(id);
+        if (produto.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        produtoRepository.deleteById(id);
     }
 }
