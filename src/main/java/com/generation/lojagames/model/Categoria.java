@@ -1,9 +1,12 @@
 package com.generation.lojagames.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_categorias")
@@ -19,6 +22,10 @@ public class Categoria {
     @NotBlank(message = "o atributo descrição deve ser preenchido")
     @Size(min = 10, max = 100, message = "o atributo descrição deve ter no minimo 20 caracteres e no máximo 100 caracteres")
     private String descricao;
+
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("categoria")
+    private List<Produto> produto;
 
     public Long getId() {
         return id;
@@ -42,5 +49,13 @@ public class Categoria {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public List<Produto> getProduto() {
+        return produto;
+    }
+
+    public void setProduto(List<Produto> produto) {
+        this.produto = produto;
     }
 }
