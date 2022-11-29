@@ -1,6 +1,8 @@
 package com.generation.lojagames.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -30,6 +32,10 @@ public class Produto {
     @NotBlank(message = "o atributo desenvolvedora deve ser preenchido")
     @Size(min = 2, max = 20, message = "o atributo desenvolvedora deve ter no minimo 2 caracteres e no máximo 20")
     private String desenvolvedora;
+
+    @ManyToOne
+    @JsonIgnoreProperties("produto")
+    private Categoria categoria;
 
     public Long getId() {
         return id;
@@ -69,5 +75,13 @@ public class Produto {
 
     public void setDesenvolvedora(String desenvolvedora) {
         this.desenvolvedora = desenvolvedora;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
